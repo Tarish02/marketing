@@ -10,9 +10,9 @@ const Navbar = ({ toggleTheme }) => {
     { label: "FII/DII Data", to: "/fii-dii-data" },
     { label: "Alerts", to: "/alerts" },
     { label: "Big Players", to: "/big-players" },
-    { label: "Watchlist", to: "/watchlist" },
+    { label: "Watchlist", to: "/watchlist" }, 
     { label: "IPO Dashboard", to: "/ipo-dashboard" },
-  ];
+  ];  
 
   return (
     <nav className="navbar">
