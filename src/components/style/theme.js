@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
-    mode: "light", // Can be changed dynamically
+    mode: "dark", 
     primary: {
       50: "#000000",
       100: "#0D0F12",
@@ -116,7 +116,7 @@ const theme = createTheme({
       contrastText: "#fff",
     },
     background: {
-      default: "#F5F5F5",
+      default: "#191E24",
       paper: "#FFFFFF",
     },
   },
