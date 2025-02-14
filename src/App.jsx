@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider, CssBaseline, Container } from "@mui/material";
-import theme from "./components/style/Theme";
+import theme from "./components/style/theme";
 import Navbar from "./components/organisms/navbar/Navbar";
 
 function App() {
