@@ -1,11 +1,18 @@
+import React from "react";
 import Navbar from "./Navbar";
+import { ThemeProvider } from "@mui/material";
+import theme from "../../style/Theme";
 
 export default {
-  title: "Components/Navbar",
+  title: "Organisms/Navbar",
   component: Navbar,
 };
 
-const Template = (args) => <Navbar {...args} />;
+const Template = (args) => (
+  <ThemeProvider theme={theme}>
+    <Navbar {...args} />
+  </ThemeProvider>
+);
 
-export const DefaultNavbar = Template.bind({});
-DefaultNavbar.args = {};
+export const Default = Template.bind({});
+Default.args = {};

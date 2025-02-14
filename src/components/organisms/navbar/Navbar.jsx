@@ -1,37 +1,60 @@
 import React from "react";
-import Button from "../../atoms/buttons/Button";
-import Tag from "../../atoms/Tag/Tag"; 
-import "./Navbar.css";
+import { AppBar, Toolbar, Typography, Button, Box, InputBase, IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import { styled } from "@mui/material/styles";
 
-const Navbar = ({ toggleTheme }) => {
-  const navLinks = [
-    { label: "Indices", to: "/indices" },
-    { label: "Insider Trades", to: "/insider-trades" },
-    { label: "FII/DII Data", to: "/fii-dii-data" },
-    { label: "Alerts", to: "/alerts" },
-    { label: "Big Players", to: "/big-players" },
-    { label: "Watchlist", to: "/watchlist" }, 
-    { label: "IPO Dashboard", to: "/ipo-dashboard" },
-  ];  
+const Search = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  backgroundColor: theme.palette.neutral[800],
+  padding: "4px 10px",
+  borderRadius: "5px",
+  border: "1px solid #ccc",
+  width: "250px",
+}));
 
+const Navbar = () => {
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">
-        <h1>LOGO</h1>
-      </div>
+    <AppBar position="static" sx={{ backgroundColor: "#191E24", padding: "5px 0" }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        {/* Left: Logo & Sidebar Toggle */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            LOGO
+          </Typography>
+        </Box>
 
-      <ul className="navbar-links">
-        {navLinks.map((link, index) => (
-          <Tag key={index} label={link.label} to={link.to} />
-        ))}
-      </ul>
+        {/* Center: Navigation Links */}
+        <Box sx={{ display: "flex", gap: 3 }}>
+          {["Indices", "Insider Trades", "FII/DII Data", "Alerts", "Big Players", "Watchlist", "IPO Dashboard"].map(
+            (item) => (
+              <Typography
+                key={item}
+                variant="body1"
+                sx={{ color: "#fff", fontSize: "14px", fontWeight: 500, cursor: "pointer" }}
+              >
+                {item}
+              </Typography>
+            )
+          )}
+        </Box>
 
-      <div className="navbar-actions">
-        <input type="text" placeholder="Search..." className="search-input" />
-        <Button label="Login" variant="login" size="medium" />
-        <Button label="Sign Up" variant="signup" size="medium" />
-      </div>
-    </nav>
+        {/* Right: Search & Buttons */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Search>
+            <SearchIcon sx={{ marginRight: 1, color: "#ccc" }} />
+            <InputBase placeholder="Search stocks and sectors etc." sx={{ color: "#fff", width: "100%" }} />
+          </Search>
+          <Button variant="contained" sx={{ backgroundColor: "#0033FF", color: "#fff", fontWeight: 600 }}>
+            Login
+          </Button>
+          <Button variant="outlined" sx={{ borderColor: "#ccc", color: "#fff", fontWeight: 600 }}>
+            Sign Up
+          </Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 
