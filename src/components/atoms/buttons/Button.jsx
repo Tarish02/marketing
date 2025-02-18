@@ -12,14 +12,14 @@ const Button = ({ variant = "primary", children, onClick, disabled }) => {
     logout: theme.palette.error.main,
     primary: theme.palette.primary.main,
     secondary: theme.palette.secondary.main,
-  };
+  }; 
 
   return (
     <MuiButton
       variant="contained"
       style={{
         backgroundColor: buttonColors[variant] || theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
+        color: theme.palette.primary.contrastText, 
       }}
       onClick={onClick}
       disabled={disabled}

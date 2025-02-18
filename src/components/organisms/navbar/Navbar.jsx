@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button, Box, InputBase, IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+// import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/material/styles";
 
@@ -35,7 +35,7 @@ const Navbar = () => {
                 sx={{ color: "#fff", fontSize: "14px", fontWeight: 500, cursor: "pointer" }}
               >
                 {item}
-              </Typography>
+              </Typography> 
             )
           )}
         </Box>

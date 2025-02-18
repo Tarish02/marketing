@@ -1,21 +1,58 @@
-import React from "react";
-import { ThemeProvider, CssBaseline, Container } from "@mui/material";
-import theme from "./components/style/theme";
+import React, { useState } from "react";
+import { ThemeProvider, CssBaseline, Box } from "@mui/material";
+import theme from "./components/style/Theme";
 import Navbar from "./components/organisms/navbar/Navbar";
+import LeftSidebar from "./components/organisms/Sidebar/LeftSidebar";
+import RightSidebar from "./components/organisms/Sidebar/RightSidebar";
+import Dashboard from "./components/organisms/dashboard/Dashboard";
 
 function App() {
+  const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
+  const [rightSidebarOpen, setRightSidebarOpen] = useState(true);
+  const [selectedContent, setSelectedContent] = useState("Market Breath");
+
+  const toggleLeftSidebar = () => setLeftSidebarOpen(!leftSidebarOpen);
+  const toggleRightSidebar = () => setRightSidebarOpen(!rightSidebarOpen);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Navbar />
-      <Container style={{ padding: "20px" }}>
-        
-      </Container>
+      <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+        <Navbar sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 0 }} />
+
+        <Box
+          sx={{
+            display: "flex",
+            flexGrow: 1,
+            marginTop: "10px",
+            height: "calc(100vh - 74px)",
+            overflow: "hidden",
+          }}
+        >
+          <LeftSidebar
+            open={leftSidebarOpen}
+            toggleSidebar={toggleLeftSidebar}
+            setSelectedContent={setSelectedContent}
+          />
+
+          <Dashboard selectedContent={selectedContent} leftSidebarOpen={leftSidebarOpen} rightSidebarOpen={rightSidebarOpen} />
+          
+          <RightSidebar open={rightSidebarOpen} toggleSidebar={toggleRightSidebar} />
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
 
 
 
