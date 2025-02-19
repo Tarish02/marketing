@@ -8,8 +8,9 @@ import SectorStocks from "../../../assets/icons/Sector-Stocks.svg";
 import MyScans from "../../../assets/icons/My-Scans.svg";
 import RawMaterial from "../../../assets/icons/Raw-Material.svg";
 import TechnofundaAnalysis from "../../../assets/icons/Technofunda Analysis.svg";
+import theme from "../../style/theme"
 
-const drawerWidth = 260;
+const drawerWidth = 206;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -68,16 +69,21 @@ export default function LeftSidebar({ setSelectedContent, open, toggleSidebar })
               sx={{
                 justifyContent: open ? "initial" : "center",
                 color: "#fff",
+                fontFamily: "AktivGrotesk-Medium, sans-serif",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "15px",
+                letterSpacing: "0%",
                 "&:hover": {
                   backgroundColor: theme.palette.secondary.main,
                 },
               }}
               onClick={() => setSelectedContent(item.text)} 
             >
-              <ListItemIcon sx={{ justifyContent: "center", color: "#fff", mr: open ? 3 : "auto" }}>
-                <img src={item.icon} alt={item.text} width="24" height="24" />
+              <ListItemIcon sx={{ justifyContent: "center", color: "#fff", minWidth: "10px" }}>
+                <img src={item.icon} alt={item.text} width="24" height="24"  />
               </ListItemIcon>
-              <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0, marginLeft: "7px"  }} />
             </ListItemButton>
           </ListItem>
         ))}
