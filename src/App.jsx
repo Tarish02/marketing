@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ThemeProvider, CssBaseline, Box } from "@mui/material";
-import theme from "./components/style/Theme";
+import theme from "./components/style/theme";
 import Navbar from "./components/organisms/navbar/Navbar";
 import LeftSidebar from "./components/organisms/Sidebar/LeftSidebar";
 import RightSidebar from "./components/organisms/Sidebar/RightSidebar";
