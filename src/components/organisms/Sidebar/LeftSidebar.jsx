@@ -27,7 +27,7 @@ const closedMixin = (theme) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  width: `60px`,
+  width: `55px`,
   backgroundColor: theme.palette.primary.main,
   marginTop: "74px",
 });
