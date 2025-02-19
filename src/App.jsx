@@ -4,7 +4,7 @@ import theme from "./components/style/theme";
 import Navbar from "./components/organisms/navbar/Navbar";
 import LeftSidebar from "./components/organisms/Sidebar/LeftSidebar";
 import RightSidebar from "./components/organisms/Sidebar/RightSidebar";
-import Dashboard from "./components/organisms/dashboard/Dashboard";
+import Dashboard from "./components/organisms/dashboard/DashBoard";
 
 function App() {
   const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
