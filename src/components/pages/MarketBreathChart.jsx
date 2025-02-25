@@ -23,11 +23,10 @@ const MarketBreathChart = () => {
       chartData.forEach((item) => {
         const date = new Date(item.date).getTime(); 
 
-        ohlc.push([date, item.close, item.close, item.close, item.close]);
-
-        rsi10.push([date, item.count_rsi_10_gt_35]);
-        rsi100.push([date, item.count_rsi_100_gt_50]);
-        ema125.push([date, item.adjusted_close_125_ema_gt_adjusted_close]);
+        ohlc.push([date, item.close, item.close, item.close, item.close]); 
+        rsi10.push([date, item["count_rsi_10_gt_35.0"]]); 
+        rsi100.push([date, item["count_rsi_100_gt_50.0"]]); 
+        ema125.push([date, item["adjusted_close_125_ema_gt_adjusted_close"]]);
       });
 
       setOptions({
@@ -45,32 +44,32 @@ const MarketBreathChart = () => {
             title: { text: "RSI 10 > 35", style: { color: "#12dbd1" } },
             top: "42%",
             height: "18%",
-            offset: 0,
+            offset: 10,
             gridLineColor: "#181816",
           },
           {
             title: { text: "RSI 100 > 50", style: { color: "#de70fa" } },
             top: "62%",
             height: "18%",
-            offset: 0,
+            offset: 10,
             gridLineColor: "#181816",
           },
           {
-            title: { text: "Adjusted Close", style: { color: "#728efd" } },
+            title: { text: "Adjusted Close > 125 EMA", style: { color: "#728efd" } },
             top: "82%",
             height: "18%",
-            offset: 0,
+            offset: 10,
             gridLineColor: "#181816",
           },
         ],
         legend: { enabled: true },
         series: [
           {
-            type: "candlestick",
+            type: "candlestick", 
             name: "Close Price",
             data: ohlc,
-            color: "#ea3d3d",
-            upColor: "#51a958",
+            color: "#ea3d3d", 
+            upColor: "#51a958", 
             lineColor: "#ea3d3d",
             upLineColor: "#51a958",
             yAxis: 0,
@@ -80,21 +79,21 @@ const MarketBreathChart = () => {
             name: "RSI 10 > 35",
             data: rsi10,
             color: "#12dbd1",
-            yAxis: 1, 
+            yAxis: 1,
           },
           {
             type: "line",
             name: "RSI 100 > 50",
             data: rsi100,
             color: "#de70fa",
-            yAxis: 2, 
+            yAxis: 2,
           },
           {
             type: "line",
-            name: "Adjusted Close",
+            name: "Adjusted Close > 125 EMA",
             data: ema125,
             color: "#728efd",
-            yAxis: 3, 
+            yAxis: 3,
           },
         ],
       });
