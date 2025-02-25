@@ -8,7 +8,6 @@ import SectorStocks from "../../../assets/icons/Sector-Stocks.svg";
 import MyScans from "../../../assets/icons/My-Scans.svg";
 import RawMaterial from "../../../assets/icons/Raw-Material.svg";
 import TechnofundaAnalysis from "../../../assets/icons/Technofunda Analysis.svg";
-import theme from "../../style/theme"
 
 const drawerWidth = 206;
 
@@ -19,7 +18,7 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   backgroundColor: theme.palette.primary.main,
-  marginTop: "74px",
+  marginTop: "64px",
 });
 
 const closedMixin = (theme) => ({
@@ -27,9 +26,9 @@ const closedMixin = (theme) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  width: `55px`,
+  width: `54px`,
   backgroundColor: theme.palette.primary.main,
-  marginTop: "74px",
+  marginTop: "64px",
 });
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" })(({ theme, open }) => ({

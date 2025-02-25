@@ -35,7 +35,8 @@ const Dashboard = ({ selectedContent, leftSidebarOpen, rightSidebarOpen }) => {
         transition: "width 0.3s ease-in-out, margin 0.3s ease-in-out",
         width: leftSidebarOpen && rightSidebarOpen ? "calc(100% - 520px)" : leftSidebarOpen || rightSidebarOpen ? "calc(100% - 280px)" : "calc(100% - 80px)",
         marginLeft: leftSidebarOpen ? "15px" : "-140px",
-        marginRight: rightSidebarOpen ? "15px" : "-180px",
+        marginRight: rightSidebarOpen ? "15px" : "-230px",
+        paddingRight: "15px",
       }}
     >
       {renderContent()}

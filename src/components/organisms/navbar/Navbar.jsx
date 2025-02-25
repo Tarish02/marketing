@@ -16,7 +16,7 @@ const Search = styled("div")(({ theme }) => ({
 
 const Navbar = () => {
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#191E24", padding: "5px 0" }}>
+    <AppBar position="static" sx={{ backgroundColor: "#191E24", padding: "5px 0", height: "64px" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         {/* Left: Logo & Sidebar Toggle */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
@@ -41,15 +41,15 @@ const Navbar = () => {
         </Box>
 
         {/* Right: Search & Buttons */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2, }}>
           <Search>
-            <SearchIcon sx={{ marginRight: 1, color: "#ccc" }} />
-            <InputBase placeholder="Search stocks and sectors etc." sx={{ color: "#fff", width: "100%" }} />
+            <SearchIcon sx={{ marginRight: 1, color: "#ccc",  }} />
+            <InputBase placeholder="Search stocks and sectors etc." sx={{ color: "#fff", width: "100%", height:"20px" }} />
           </Search>
-          <Button variant="contained" sx={{ backgroundColor: "#0033FF", color: "#fff", fontWeight: 600 }}>
+          <Button variant="contained" sx={{ backgroundColor: "#0033FF", color: "#fff", fontWeight: 600, height:"28px" }}>
             Login
           </Button>
-          <Button variant="outlined" sx={{ borderColor: "#ccc", color: "#fff", fontWeight: 600 }}>
+          <Button variant="outlined" sx={{ borderColor: "#ccc", color: "#fff", fontWeight: 600, height:"28px" }}>
             Sign Up
           </Button>
         </Box>
