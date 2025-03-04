@@ -14,6 +14,16 @@ function App() {
   const toggleLeftSidebar = () => setLeftSidebarOpen(!leftSidebarOpen);
   const toggleRightSidebar = () => setRightSidebarOpen(!rightSidebarOpen);
 
+  const handleContentSelection = (content) => {
+    setSelectedContent(content);
+    
+    // If Hot Sector is selected,
+    if (content === "Hot Sector") {
+      setLeftSidebarOpen(false);
+      setRightSidebarOpen(false);
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -32,10 +42,14 @@ function App() {
           <LeftSidebar
             open={leftSidebarOpen}
             toggleSidebar={toggleLeftSidebar}
-            setSelectedContent={setSelectedContent}
+            setSelectedContent={handleContentSelection} // Use updated function
           />
 
-          <Dashboard selectedContent={selectedContent} leftSidebarOpen={leftSidebarOpen} rightSidebarOpen={rightSidebarOpen} />
+          <Dashboard 
+            selectedContent={selectedContent} 
+            leftSidebarOpen={leftSidebarOpen} 
+            rightSidebarOpen={rightSidebarOpen} 
+          />
           
           <RightSidebar open={rightSidebarOpen} toggleSidebar={toggleRightSidebar} />
         </Box>

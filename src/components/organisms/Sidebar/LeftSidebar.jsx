@@ -62,31 +62,37 @@ export default function LeftSidebar({ setSelectedContent, open, toggleSidebar })
       </Box>
 
       <List>
-        {menuItems.map((item) => (
-          <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              sx={{
-                justifyContent: open ? "initial" : "center",
-                color: "#fff",
-                fontFamily: "AktivGrotesk-Medium, sans-serif",
-                fontWeight: 400,
-                fontSize: "14px",
-                lineHeight: "15px",
-                letterSpacing: "0%",
-                "&:hover": {
-                  backgroundColor: theme.palette.secondary.main,
-                },
-              }}
-              onClick={() => setSelectedContent(item.text)} 
-            >
-              <ListItemIcon sx={{ justifyContent: "center", color: "#fff", minWidth: "10px" }}>
-                <img src={item.icon} alt={item.text} width="24" height="24"  />
-              </ListItemIcon>
-              <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0, marginLeft: "7px"  }} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+  {menuItems.map((item) => (
+    <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
+      <ListItemButton
+        sx={{
+          justifyContent: open ? "initial" : "center",
+          color: "#fff",
+          fontFamily: "AktivGrotesk-Medium, sans-serif",
+          fontWeight: 400,
+          fontSize: "14px",
+          lineHeight: "15px",
+          letterSpacing: "0%",
+          "&:hover": {
+            backgroundColor: theme.palette.secondary.main,
+          },
+        }}
+        onClick={() => {
+          setSelectedContent(item.text);
+          if (item.text === "Hot Sector") {
+            toggleSidebar(); // Close sidebar when "Hot Sector" is clicked
+          }
+        }}
+      >
+        <ListItemIcon sx={{ justifyContent: "center", color: "#fff", minWidth: "10px" }}>
+          <img src={item.icon} alt={item.text} width="24" height="24" />
+        </ListItemIcon>
+        <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0, marginLeft: "7px" }} />
+      </ListItemButton>
+    </ListItem>
+  ))}
+</List>
+
     </Drawer>
   );
 }

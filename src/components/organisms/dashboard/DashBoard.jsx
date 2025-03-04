@@ -6,7 +6,7 @@ import MyScansPage from "../../pages/MyScansPage";
 import RawMaterialPage from "../../pages/RawMaterialPage";
 import TechnofundaAnalysisPage from "../../pages/TechnofundaAnalysisPage";
 
-const Dashboard = ({ selectedContent, leftSidebarOpen, rightSidebarOpen }) => {
+const Dashboard = ({ selectedContent, leftSidebarOpen, rightSidebarOpen, setLeftSidebarOpen, setRightSidebarOpen }) => {
   const renderContent = () => {
     switch (selectedContent) {
       case "Market Breath":
@@ -26,6 +26,12 @@ const Dashboard = ({ selectedContent, leftSidebarOpen, rightSidebarOpen }) => {
     }
   };
 
+  // Function to close both sidebars
+  const closeBothSidebars = () => {
+    setLeftSidebarOpen(false);
+    setRightSidebarOpen(false);
+  };
+
   return (
     <div
       style={{
@@ -40,6 +46,8 @@ const Dashboard = ({ selectedContent, leftSidebarOpen, rightSidebarOpen }) => {
       }}
     >
       {renderContent()}
+      
+
     </div>
   );
 };

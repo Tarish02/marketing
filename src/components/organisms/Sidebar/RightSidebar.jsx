@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchActiveSectors } from "../../../redux/sectorsSlice";
 import { styled } from "@mui/material/styles";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import {
   Drawer as MuiDrawer,
   Box,
@@ -264,9 +265,7 @@ const TopNewsSection = ({ open, onViewAll }) => {
 
 const AnotherSection = ({ open }) => {
   const dispatch = useDispatch();
-  const { sectors, loading, error, lastUpdated } = useSelector(
-    (state) => state.sectors
-  );
+  const { sectors, loading, error, lastUpdated } = useSelector((state) => state.sectors);
   const [viewAll, setViewAll] = useState(false);
 
   useEffect(() => {
@@ -286,7 +285,7 @@ const AnotherSection = ({ open }) => {
         padding: open ? "16px" : "8px",
         transition: "0.3s",
         marginTop: "-24px",
-        height: "242px",
+        height: "255px",
       }}
     >
       {open ? (
@@ -295,7 +294,7 @@ const AnotherSection = ({ open }) => {
             background: "#272D35",
             borderRadius: "8px",
             padding: "8px",
-            height: "172px",
+            height: "185px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
@@ -305,49 +304,51 @@ const AnotherSection = ({ open }) => {
             variant="body1"
             sx={{ color: "#fff", fontSize: "12px", marginLeft: "8px" }}
           >
-            Most Active Sectors
+           Insideclue Most Active Sectors 
           </Typography>
 
           {loading ? (
-            <Typography sx={{ color: "#fff", textAlign: "center" }}>
-              Loading...
-            </Typography>
+            <Typography sx={{ color: "#fff", textAlign: "center" }}>Loading...</Typography>
           ) : error ? (
             <Typography sx={{ color: "#ff5252", textAlign: "center" }}>
               {error} <br />
               <span
                 onClick={() => dispatch(fetchActiveSectors())}
-                style={{
-                  cursor: "pointer",
-                  textDecoration: "underline",
-                  color: "#39D353",
-                }}
+                style={{ cursor: "pointer", textDecoration: "underline", color: "#39D353" }}
               >
                 Retry
               </span>
             </Typography>
           ) : sectors.length > 0 ? (
-            <Box sx={{ marginTop: "8px" }}>
-              {sectors.slice(0, 3).map((sector, index) => (
-                <Typography
-                  key={index}
-                  sx={{
-                    color: "#fff",
-                    background: "#333",
-                    padding: "4px 8px",
-                    borderRadius: "4px",
-                    marginBottom: "4px",
-                  }}
-                >
-                  {sector.date},
-                  {sector.sector}
-                </Typography>
-              ))}
-            </Box>
+            <TableContainer component={Paper} sx={{ background: "#191E24", borderRadius: "8px" }}>
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ color: "#39D353", fontWeight: "bold", fontSize: "10px", padding: "4px" }}>
+                    Date
+                  </TableCell>
+                  <TableCell sx={{ color: "#39D353", fontWeight: "bold", fontSize: "10px", padding: "4px" }}>
+                    Sector
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {sectors.slice(0, 4).map((sector, index) => ( 
+                  <TableRow key={index} sx={{ height: "24px" }}> 
+                    <TableCell sx={{ color: "#fff", fontSize: "10px", padding: "4px" }}>
+                      {sector.date}
+                    </TableCell>
+                    <TableCell sx={{ color: "#fff", fontSize: "10px", padding: "4px" }}>
+                      {sector.sector}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          
           ) : (
-            <Typography sx={{ color: "#fff", textAlign: "center" }}>
-              No active sectors available.
-            </Typography>
+            <Typography sx={{ color: "#fff", textAlign: "center" }}>No active sectors available.</Typography>
           )}
 
           <Typography
@@ -390,7 +391,7 @@ const AnotherSection = ({ open }) => {
             sx={{
               position: "absolute",
               left: "20%",
-              transform: "translate(0, 0)", 
+              transform: "translate(0, 0)",
               width: 1355,
               background: "#272D35",
               borderRadius: "8px",
@@ -401,36 +402,33 @@ const AnotherSection = ({ open }) => {
               transition: "0.5s ease-in-out",
             }}
           >
-            <Typography variant="h6" sx={{ color: "#fff",  }}>
+            <Typography variant="h6" sx={{ color: "#fff" }}>
               All Active Sectors
             </Typography>
 
             {loading ? (
-              <Typography sx={{ color: "#fff",  }}>
-                Loading...
-              </Typography>
+              <Typography sx={{ color: "#fff" }}>Loading...</Typography>
             ) : error ? (
-              <Typography sx={{ color: "#ff5252", }}>
-                {error}
-              </Typography>
+              <Typography sx={{ color: "#ff5252" }}>{error}</Typography>
             ) : (
-              <Box sx={{ marginTop: "8px" }}>
-                {sectors.map((sector, index) => (
-                  <Typography
-                    key={index}
-                    sx={{
-                      color: "#fff",
-                      background: "#333",
-                      padding: "4px 8px",
-                      borderRadius: "4px",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    {sector.date},
-                    {sector.sector}
-                  </Typography>
-                ))}
-              </Box>
+              <TableContainer component={Paper} sx={{ background: "#191E24", borderRadius: "8px" }}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell sx={{ color: "#39D353", fontWeight: "bold" }}>Date</TableCell>
+                      <TableCell sx={{ color: "#39D353", fontWeight: "bold" }}>Sector</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {sectors.map((sector, index) => (
+                      <TableRow key={index}>
+                        <TableCell sx={{ color: "#fff" }}>{sector.date}</TableCell>
+                        <TableCell sx={{ color: "#fff" }}>{sector.sector}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             )}
 
             <Typography
@@ -452,7 +450,6 @@ const AnotherSection = ({ open }) => {
     </Box>
   );
 };
-
 const VideoSection = ({ open }) => {
   return (
     <Box
