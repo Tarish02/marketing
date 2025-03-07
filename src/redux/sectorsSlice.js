@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Async thunk to fetch active sectors
 export const fetchActiveSectors = createAsyncThunk(
   "sectors/fetchActiveSectors",
   async () => {

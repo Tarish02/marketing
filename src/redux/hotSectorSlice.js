@@ -1,32 +1,33 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export const fetchHotSector = createAsyncThunk("hotSector/fetch", async () => {
-  const response = await fetch("http://localhost:5000/hot-sector"); 
-  return response.json();
-});
+export const fetchHotSectorDetails = createAsyncThunk(
+  "hotSector/fetchHotSectorDetails",
+  async (sector) => {
+    const response = await axios.get(`/api/sector-details?sector=${sector}`);
+    return response.data;
+  }
+);
 
 const hotSectorSlice = createSlice({
   name: "hotSector",
-  initialState: {
-    data: [],
-    status: "idle",
-    error: null,
-  },
+  initialState: { sectorData: {}, loading: false, error: null },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHotSector.pending, (state) => {
-        state.status = "loading";
+      .addCase(fetchHotSectorDetails.pending, (state) => {
+        state.loading = true;
       })
-      .addCase(fetchHotSector.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.data = action.payload;
+      .addCase(fetchHotSectorDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.sectorData = action.payload;
       })
-      .addCase(fetchHotSector.rejected, (state, action) => {
-        state.status = "failed";
+      .addCase(fetchHotSectorDetails.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.error.message;
       });
   },
 });
 
 export default hotSectorSlice.reducer;
+// export { fetchHotSectorDetails }; 
