@@ -8,6 +8,7 @@ import SectorStocks from "../../../assets/icons/Sector-Stocks.svg";
 import MyScans from "../../../assets/icons/My-Scans.svg";
 import RawMaterial from "../../../assets/icons/Raw-Material.svg";
 import TechnofundaAnalysis from "../../../assets/icons/Technofunda Analysis.svg";
+import Screen6 from "../../pages/Screen6"
 
 const drawerWidth = 206;
 
@@ -48,6 +49,7 @@ const menuItems = [
   { text: "My Scans", icon: MyScans },
   { text: "Raw Material", icon: RawMaterial },
   { text: "Technofunda Analysis", icon: TechnofundaAnalysis },
+  { text: "Screen6", },
 ];
 
 export default function LeftSidebar({ setSelectedContent, open, toggleSidebar }) {
@@ -80,7 +82,7 @@ export default function LeftSidebar({ setSelectedContent, open, toggleSidebar })
         onClick={() => {
           setSelectedContent(item.text);
           if (item.text === "Hot Sector") {
-            toggleSidebar(); // Close sidebar when "Hot Sector" is clicked
+            toggleSidebar();
           }
         }}
       >

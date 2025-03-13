@@ -17,7 +17,6 @@ function App() {
   const handleContentSelection = (content) => {
     setSelectedContent(content);
     
-    // If Hot Sector is selected,
     if (content === "Hot Sector") {
       setLeftSidebarOpen(false);
       setRightSidebarOpen(false);
@@ -42,7 +41,7 @@ function App() {
           <LeftSidebar
             open={leftSidebarOpen}
             toggleSidebar={toggleLeftSidebar}
-            setSelectedContent={handleContentSelection} // Use updated function
+            setSelectedContent={handleContentSelection} 
           />
 
           <Dashboard 

@@ -18,14 +18,11 @@ const Navbar = () => {
   return (
     <AppBar position="static" sx={{ backgroundColor: "#191E24", padding: "5px 0", height: "64px" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        {/* Left: Logo & Sidebar Toggle */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
             LOGO
           </Typography>
         </Box>
-
-        {/* Center: Navigation Links */}
         <Box sx={{ display: "flex", gap: 3 }}>
           {["Indices", "Insider Trades", "FII/DII Data", "Alerts", "Big Players", "Watchlist", "IPO Dashboard"].map(
             (item) => (
@@ -39,8 +36,6 @@ const Navbar = () => {
             )
           )}
         </Box>
-
-        {/* Right: Search & Buttons */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2, }}>
           <Search>
             <SearchIcon sx={{ marginRight: 1, color: "#ccc",  }} />

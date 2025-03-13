@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchActiveSectors } from "../../../redux/sectorsSlice";
+import { fetchActiveSectors } from "../../../redux/slices/sectorsSlice";
 import { styled } from "@mui/material/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import {
@@ -384,7 +384,6 @@ const AnotherSection = ({ open }) => {
         </Typography>
       )}
 
-      {/* View All Sliding Modal */}
       <Modal open={viewAll} onClose={() => setViewAll(false)}>
         <Slide direction="left" in={viewAll} mountOnEnter unmountOnExit>
           <Box

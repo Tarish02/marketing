@@ -5,6 +5,7 @@ import SectorStocksPage from "../../pages/SectorStocksPage";
 import MyScansPage from "../../pages/MyScansPage";
 import RawMaterialPage from "../../pages/RawMaterialPage";
 import TechnofundaAnalysisPage from "../../pages/TechnofundaAnalysisPage";
+import Screen6 from "../../pages/Screen6"
 
 const Dashboard = ({ selectedContent, leftSidebarOpen, rightSidebarOpen, setLeftSidebarOpen, setRightSidebarOpen }) => {
   const renderContent = () => {
@@ -21,12 +22,13 @@ const Dashboard = ({ selectedContent, leftSidebarOpen, rightSidebarOpen, setLeft
         return <RawMaterialPage />;
       case "Technofunda Analysis":
         return <TechnofundaAnalysisPage />;
+      case "Screen6":
+        return <Screen6/>
       default:
         return <MarketBreathPage />;
     }
   };
 
-  // Function to close both sidebars
   const closeBothSidebars = () => {
     setLeftSidebarOpen(false);
     setRightSidebarOpen(false);

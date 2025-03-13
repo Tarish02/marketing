@@ -17,7 +17,7 @@ const theme = createTheme({
       700: "#363480",
       800: "#2A323C",
       900: "#2E3742",
-      main: "#1D232A", // Default primary color
+      main: "#1D232A",
       contrastText: "#fff",
     },
     secondary: {

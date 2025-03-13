@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
-import { fetchChartData } from "../../redux/chartSlice";
+import { fetchChartData } from "../../redux/slices/chartSlice";
 
 const MarketBreathChart = () => {
   const dispatch = useDispatch();
@@ -71,46 +71,8 @@ const MarketBreathChart = () => {
     setOptions({
       chart: { backgroundColor: "#191E24", height: 500 },
       title: { text: "Market Breath Chart", style: { color: "#ffffff" } },
-      rangeSelector: {
-        selected: 1,
-        buttons: [
-          {
-            type: "month",
-            count: 1,
-            text: "1m",
-            events: { click: () => updateChartRange(30) },
-          },
-          {
-            type: "month",
-            count: 3,
-            text: "3m",
-            events: { click: () => updateChartRange(90) },
-          },
-          {
-            type: "month",
-            count: 6,
-            text: "6m",
-            events: { click: () => updateChartRange(180) },
-          },
-          {
-            type: "ytd",
-            text: "YTD",
-            events: { click: () => updateChartRange("ytd") },
-          },
-          {
-            type: "year",
-            count: 1,
-            text: "1y",
-            events: { click: () => updateChartRange(365) },
-          },
-          {
-            type: "all",
-            text: "All",
-            events: { click: () => updateChartRange("all") },
-          },
-        ],
-      },
-
+      rangeSelector: { enabled: false }, // 🔥 Removes buttons
+  
       xAxis: {
         gridLineColor: "#181816",
         labels: { style: { color: "#ffffff" } },
@@ -137,30 +99,30 @@ const MarketBreathChart = () => {
           opposite: true,
         },
       ],
-
+  
       legend: {
         enabled: true,
         itemStyle: { color: "#ffffff", fontSize: "12px" },
       },
-
+  
       tooltip: { backgroundColor: "#000000", style: { color: "#ffffff" } },
-
+  
       series: [
         {
           type: "candlestick",
           name: "Close Price",
           data: candlestickData,
-          color: "#FF3B3B",
-          upColor: "#00fb2c",
+          color: "#F23645",
+          upColor: "#089981",
           lineColor: "#FF3B3B",
-          upLineColor: "#00fb2c",
+          upLineColor: "#089981",
           yAxis: 0,
         },
         {
           type: "line",
           name: "RSI 10 > 35",
           data: normalizedRsi10,
-          color: "#12dbd1",
+          color: "#089981",
           dashStyle: "Solid",
           yAxis: 1,
           connectNulls: true,
@@ -169,7 +131,7 @@ const MarketBreathChart = () => {
           type: "line",
           name: "RSI 100 > 50",
           data: normalizedRsi100,
-          color: "#de70fa",
+          color: "#675FED",
           yAxis: 1,
           connectNulls: true,
         },
@@ -177,7 +139,7 @@ const MarketBreathChart = () => {
           type: "line",
           name: "Adjusted Close 125 EMA",
           data: normalizedEma,
-          color: "#f3ba2f",
+          color: "#F4E771",
           yAxis: 1,
           connectNulls: true,
         },
