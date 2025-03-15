@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isOpen: false,
   selectedSector: null,
-  selectedStock: null, // Store selected stock symbol
+  selectedStock: null, // Store the selected stock dynamically
 };
 
 const uiSlice = createSlice({
@@ -16,7 +16,7 @@ const uiSlice = createSlice({
     setSelectedSector: (state, action) => {
       state.selectedSector = action.payload;
     },
-    setSelectedStock: (state, action) => { // New reducer
+    setSelectedStock: (state, action) => { // Store the selected stock
       state.selectedStock = action.payload;
     },
   },

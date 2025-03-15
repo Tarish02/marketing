@@ -36,7 +36,7 @@ const BalanceSheet = () => {
         variant="subtitle2"
         sx={{ fontWeight: 400, fontSize: "10px", lineHeight: "19px", color: "#8C8CEC", mb: 0.5 }}
       >
-        Yearly
+       PROFIT & LOSS
       </Typography>
       <TableContainer component={Paper} sx={{ bgcolor: "#272D35" }}>
         <Table size="small">

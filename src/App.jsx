@@ -1,25 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider, CssBaseline, Box } from "@mui/material";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import theme from "./components/style/theme";
 import Navbar from "./components/organisms/navbar/Navbar";
 import LeftSidebar from "./components/organisms/Sidebar/LeftSidebar";
 import RightSidebar from "./components/organisms/Sidebar/RightSidebar";
 import Dashboard from "./components/organisms/dashboard/DashBoard";
+import Screen6 from "./components/pages/Screen6";
 
 function App() {
   const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
   const [rightSidebarOpen, setRightSidebarOpen] = useState(true);
   const [selectedContent, setSelectedContent] = useState("Market Breath");
 
-  const toggleLeftSidebar = () => setLeftSidebarOpen(!leftSidebarOpen);
-  const toggleRightSidebar = () => setRightSidebarOpen(!rightSidebarOpen);
+  const navigate = useNavigate(); // Navigation Hook
 
-  const handleContentSelection = (content) => {
-    setSelectedContent(content);
-    
-    if (content === "Hot Sector") {
+  const toggleLeftSidebar = () => setLeftSidebarOpen((prev) => !prev);
+  const toggleRightSidebar = () => setRightSidebarOpen((prev) => !prev);
+
+  // Use useEffect to collapse both sidebars when "Hot Sector" is selected
+  useEffect(() => {
+    if (selectedContent === "Hot Sector") {
       setLeftSidebarOpen(false);
       setRightSidebarOpen(false);
+    }
+  }, [selectedContent]);
+
+  const handleContentSelection = (content, stockSymbol = null) => {
+    setSelectedContent(content);
+
+    if (stockSymbol) {
+      navigate(`/screen6/${stockSymbol}`); // Navigate to specific stock
+    } else if (content !== "Screen6") {
+      navigate("/"); // Navigate back to Dashboard for other selections
     }
   };
 
@@ -27,29 +40,39 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-        <Navbar sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 0 }} />
+        <Navbar sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 10 }} />
 
         <Box
           sx={{
             display: "flex",
             flexGrow: 1,
-            marginTop: "10px",
-            height: "calc(100vh - 74px)",
+            marginTop: "64px",
+            height: "calc(100vh - 64px)",
             overflow: "hidden",
           }}
         >
           <LeftSidebar
             open={leftSidebarOpen}
-            toggleSidebar={toggleLeftSidebar}
-            setSelectedContent={handleContentSelection} 
+            toggleSidebar={toggleLeftSidebar} // Used for Left Sidebar only
+            setSelectedContent={handleContentSelection} // Sidebar triggers navigation
           />
 
-          <Dashboard 
-            selectedContent={selectedContent} 
-            leftSidebarOpen={leftSidebarOpen} 
-            rightSidebarOpen={rightSidebarOpen} 
-          />
-          
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Dashboard
+                  selectedContent={selectedContent}
+                  leftSidebarOpen={leftSidebarOpen}
+                  rightSidebarOpen={rightSidebarOpen}
+                  setLeftSidebarOpen={setLeftSidebarOpen} // Pass down the setter
+                  setRightSidebarOpen={setRightSidebarOpen} // Pass down the setter
+                />
+              }
+            />
+            <Route path="/screen6/:stockSymbol" element={<Screen6 />} /> {/* Dynamic Route */}
+          </Routes>
+
           <RightSidebar open={rightSidebarOpen} toggleSidebar={toggleRightSidebar} />
         </Box>
       </Box>
@@ -58,6 +81,13 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
 
 
 

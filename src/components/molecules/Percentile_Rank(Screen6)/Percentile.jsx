@@ -42,6 +42,7 @@ const PercentileRankChart = () => {
           display: "flex",
           justifyContent: "space-around",
           width: "100%",
+          height:"231px",
           position: "relative",
           borderBottom: "2px solid white",
           paddingBottom: "16px",
@@ -59,13 +60,13 @@ const PercentileRankChart = () => {
                 flexDirection: "column",
                 alignItems: "center",
                 position: "relative",
-                height: "120px",
+                height: "193px",
               }}
             >
               <Box
                 sx={{
                   width: "2px",
-                  height: "100px",
+                  height: "193px",
                   backgroundColor: "#ffffff",
                   position: "absolute",
                   bottom: "0",

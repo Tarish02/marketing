@@ -18,7 +18,7 @@ const QuarterlyTTMTable = () => {
 
   useEffect(() => {
     fetch(
-      "https://eodhd.com/api/fundamentals/RELIANCE.NSE?api_token=65eecd0d8297f5.37934867&fmt=json" // <-- REPLACE THIS API URL
+      "https://eodhd.com/api/fundamentals/RELIANCE.NSE?api_token=65eecd0d8297f5.37934867&fmt=json" 
     )
       .then((res) => res.json())
       .then((data) => {
