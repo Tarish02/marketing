@@ -24,7 +24,7 @@ const DrawerComponent = () => {
 
   useEffect(() => {
     if (isOpen && selectedSector) {
-      dispatch(fetchDrawerData(selectedSector)); // Fetch sector-specific stocks
+      dispatch(fetchDrawerData(selectedSector));
     }
   }, [isOpen, selectedSector, dispatch]);
 
@@ -33,9 +33,10 @@ const DrawerComponent = () => {
   };
 
   const handleRowClick = (stockSymbol) => {
-    dispatch(setSelectedStock(stockSymbol)); // Store selected stock
-    navigate(`/screen6/${stockSymbol}`); // Navigate dynamically
+    dispatch(setSelectedStock(stockSymbol)); 
+    window.open(`/screen6/${stockSymbol}`, "_blank");
   };
+  
   
 
   return (

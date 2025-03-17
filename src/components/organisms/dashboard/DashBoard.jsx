@@ -28,12 +28,6 @@ const Dashboard = ({ selectedContent, leftSidebarOpen, rightSidebarOpen, setLeft
         return <MarketBreathPage />;
     }
   };
-
-  const closeBothSidebars = () => {
-    setLeftSidebarOpen(false);
-    setRightSidebarOpen(false);
-  };
-
   return (
     <div
       style={{

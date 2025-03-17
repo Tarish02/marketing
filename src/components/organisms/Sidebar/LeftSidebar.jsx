@@ -49,7 +49,6 @@ const menuItems = [
   { text: "My Scans", icon: MyScans },
   { text: "Raw Material", icon: RawMaterial },
   { text: "Technofunda Analysis", icon: TechnofundaAnalysis },
-  { text: "Screen6", },
 ];
 
 export default function LeftSidebar({ setSelectedContent, open, toggleSidebar }) {

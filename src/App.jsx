@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider, CssBaseline, Box } from "@mui/material";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import theme from "./components/style/theme";
 import Navbar from "./components/organisms/navbar/Navbar";
 import LeftSidebar from "./components/organisms/Sidebar/LeftSidebar";
@@ -13,26 +13,31 @@ function App() {
   const [rightSidebarOpen, setRightSidebarOpen] = useState(true);
   const [selectedContent, setSelectedContent] = useState("Market Breath");
 
-  const navigate = useNavigate(); // Navigation Hook
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleLeftSidebar = () => setLeftSidebarOpen((prev) => !prev);
   const toggleRightSidebar = () => setRightSidebarOpen((prev) => !prev);
 
-  // Use useEffect to collapse both sidebars when "Hot Sector" is selected
+  // Collapse both sidebars when navigating to "Hot Sector", "Technofunda Analysis", or "Screen6"
   useEffect(() => {
-    if (selectedContent === "Hot Sector") {
+    if (
+      selectedContent === "Hot Sector" || 
+      selectedContent === "Technofunda Analysis" || 
+      location.pathname.startsWith("/screen6")
+    ) {
       setLeftSidebarOpen(false);
       setRightSidebarOpen(false);
     }
-  }, [selectedContent]);
+  }, [selectedContent, location.pathname]);
 
   const handleContentSelection = (content, stockSymbol = null) => {
     setSelectedContent(content);
 
     if (stockSymbol) {
-      navigate(`/screen6/${stockSymbol}`); // Navigate to specific stock
+      navigate(`/screen6/${stockSymbol}`);
     } else if (content !== "Screen6") {
-      navigate("/"); // Navigate back to Dashboard for other selections
+      navigate("/");
     }
   };
 
@@ -53,8 +58,8 @@ function App() {
         >
           <LeftSidebar
             open={leftSidebarOpen}
-            toggleSidebar={toggleLeftSidebar} // Used for Left Sidebar only
-            setSelectedContent={handleContentSelection} // Sidebar triggers navigation
+            toggleSidebar={toggleLeftSidebar}
+            setSelectedContent={handleContentSelection}
           />
 
           <Routes>
@@ -65,12 +70,12 @@ function App() {
                   selectedContent={selectedContent}
                   leftSidebarOpen={leftSidebarOpen}
                   rightSidebarOpen={rightSidebarOpen}
-                  setLeftSidebarOpen={setLeftSidebarOpen} // Pass down the setter
-                  setRightSidebarOpen={setRightSidebarOpen} // Pass down the setter
+                  setLeftSidebarOpen={setLeftSidebarOpen}
+                  setRightSidebarOpen={setRightSidebarOpen}
                 />
               }
             />
-            <Route path="/screen6/:stockSymbol" element={<Screen6 />} /> {/* Dynamic Route */}
+            <Route path="/screen6/:stockSymbol" element={<Screen6 />} />
           </Routes>
 
           <RightSidebar open={rightSidebarOpen} toggleSidebar={toggleRightSidebar} />
@@ -81,6 +86,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

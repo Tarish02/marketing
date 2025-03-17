@@ -101,37 +101,55 @@ const Screen6 = () => {
     legend: { enabled: false },
     series: [{ name: "Volume", data: volumeData, color: "purple", showInLegend: false }]
   };
-  
-  
-  
-  
-  
+
   const deliveryQtyOptions = {
-    chart: { type: "line", backgroundColor: "#191E24", height: expanded ? "150px" : "120px", marginTop: 3 },
-    title: { text: "Delivery QTY", style: { color: "#FFFFFF", fontSize: "10px" }, align: "left" },
+    chart: { 
+      type: "column",  
+      backgroundColor: "#191E24", 
+      height: expanded ? "150px" : "125px", 
+      marginTop: 3 
+    },
+    title: { 
+      text: "Delivery QTY", 
+      style: { color: "#FFFFFF", fontSize: "10px" }, 
+      align: "left" 
+    },
     xAxis: commonXAxis,
-    yAxis: { title: { text: "" }, labels: { style: { color: "#FFFFFF" } }, gridLineWidth: 0 },
+    yAxis: { 
+      title: { text: "" }, 
+      labels: { style: { color: "#FFFFFF" } }, 
+      gridLineWidth: 0 
+    },
     legend: { enabled: false },
-    series: [{ name: "Delivery Quantity", data: deliveryQtyData, color: "yellow", showInLegend: false }],
+    series: [{ 
+      type: "column",  
+      name: "Delivery Quantity", 
+      data: deliveryQtyData, 
+      color: "yellow", 
+      showInLegend: false 
+    }],
   };
+  
   
 
   return (
     <Box 
-      sx={{
-        position: "absolute",
-        top: 0, 
-        left: expanded ? "10%" : 55, 
-        marginTop: "4.3%",
-        width: expanded ? "80vw" : "92vw",
-        height: "90vh", 
-        backgroundColor: "#272D35",
-        zIndex: 1000,
-        display: "flex",
-        flexDirection: expanded ? "column" : "row",
-        overflow: "hidden",
-      }}
-    >
+  sx={{
+    position: "absolute",
+    top: 0, 
+    left: expanded ? "5%" : 55,  
+    right: expanded ? "5%" : "auto", 
+    marginTop: "4.3%",
+    width: expanded ? "90vw" : "92vw",
+    height: "90vh", 
+    backgroundColor: "#272D35",
+    zIndex: 1000,
+    display: "flex",
+    flexDirection: expanded ? "column" : "row",
+    overflow: "hidden",
+  }}
+>
+
       <IconButton
         onClick={() => setExpanded(!expanded)}
         sx={{ position: "absolute", top: 138, left: 640, zIndex: 2 }}
